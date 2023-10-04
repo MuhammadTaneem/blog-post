@@ -1,0 +1,76 @@
+<div class="mt-5 row d-flex justify-content-center">
+  <mat-card class="col-sm-6 col-10 col-md-4">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+    <mat-card-header class="row text-center m-2">
+      <mat-card-title> Login Blogest</mat-card-title>
+    </mat-card-header>
+
+    <form [formGroup]="loginFrom" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+      <mat-form-field class="matCard">
+        <input
+          type="email"
+          matInput
+          formControlName="email"
+          name="email"
+          placeholder="Your Email"
+        />
+      </mat-form-field>
+
+      <br />
+      <mat-form-field class="matCard">
+        <input
+          [type]="hide ? 'password' : 'text'"
+          matInput
+          formControlName="password"
+          name="password1"
+          placeholder="Enter  password "
+        />
+        <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <br />
+
+      <div class="text-center mt-2">
+        <button
+          type="submit"
+          color="primary"
+          class=""
+          mat-raised-button
+          [disabled]="!loginFrom.valid"
+          (clik)="onSubmit()"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </mat-card>
+  <div class="col-12 row d-flex justify-content-center">
+    <div class="col-sm-6 col-11 col-md-5">
+      <div class="action">
+        <button
+          type="button"
+          mat-button
+          class="create p-0"
+          [routerLink]="['/signup']"
+          routerLinkActive="router-link-active"
+        >
+          create account
+        </button>
+        <button
+          type="button"
+          mat-button
+          class="forget p-0"
+          [routerLink]="['/reset']"
+          routerLinkActive="router-link-active"
+        >
+          forget password
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <app-list></app-list> -->

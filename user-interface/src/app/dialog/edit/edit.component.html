@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>{{ data.field }}</h2>
+<mat-dialog-content class="mat-typography">
+  <p class="text-break">{{ data.content }}</p>
+  <textarea
+    type="text"
+    class="text-break form-control"
+    #newValue
+    [value]="data.content"
+  ></textarea>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="false" cdkFocusInitial>Cancel</button>
+  <button mat-button [mat-dialog-close]="newValue.value" color="primary">
+    Save
+  </button>
+</mat-dialog-actions>

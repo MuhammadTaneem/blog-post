@@ -1,0 +1,17 @@
+mat-form-field {
+  width: 100%;
+}
+
+.container {
+  margin-top: 3rem;
+}
+mat-spinner {
+  margin: auto;
+}
+
+.forget {
+  float: right;
+}
+.create {
+  color: green;
+}

@@ -1,0 +1,25 @@
+mat-form-field {
+  width: 100%;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+input[type="file"] {
+  visibility: hidden;
+}
+
+.matlocation {
+  color: blue;
+  font-size: 2.5rem;
+}
+
+.ml {
+  float: right;
+}
+
+.crossicon {
+  position: absolute;
+  transform: translate(-110%, -5%);
+}

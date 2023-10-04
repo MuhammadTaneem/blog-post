@@ -1,0 +1,87 @@
+<mat-progress-bar
+  *ngIf="loading"
+  mode="indeterminate"
+  color="accent"
+></mat-progress-bar>
+
+<div class="row d-flex justify-content-center mt-5">
+  <mat-card class="col-sm-8 col-11 col-md-6" *ngIf="!isCreated">
+    <mat-card-header class="row text-center m-2">
+      <mat-card-title> Reset Passwrod</mat-card-title>
+    </mat-card-header>
+
+    <form [formGroup]="resetFrom" (ngSubmit)="reset()">
+      <mat-form-field class="matCard">
+        <input
+          type="email"
+          matInput
+          formControlName="email"
+          name="email"
+          placeholder="Your Email"
+        />
+      </mat-form-field>
+
+      <br />
+
+      <div class="text-center mt-2">
+        <button
+          type="submit"
+          color="primary"
+          class=""
+          mat-raised-button
+          [disabled]="!resetFrom.valid"
+          (clik)="reset()"
+        >
+          Send Email
+        </button>
+      </div>
+    </form>
+  </mat-card>
+
+  <!-- after send email  -->
+
+  <mat-card class="col-sm-8 col-11 col-md-6" *ngIf="isCreated">
+    <mat-card-header class="row text-center m-2">
+      <div>
+        <mat-icon
+          class="suc_logo"
+          aria-hidden="false"
+          aria-label="Example home icon"
+          >task_alt</mat-icon
+        >
+      </div>
+      <div>
+        <p class="h5">Reset passwrod email send</p>
+      </div>
+    </mat-card-header>
+    <button class="resend" mat-button (click)="reset()">resend email?</button>
+  </mat-card>
+
+  <!-- helpfull url  -->
+  <div class="col-12 row d-flex justify-content-center">
+    <div class="col-sm-8 col-11 col-md-6">
+      <div class="action">
+        <button
+          type="button"
+          mat-button
+          class="create p-0"
+          [routerLink]="['/signup']"
+          routerLinkActive="router-link-active"
+        >
+          create account
+        </button>
+        <button
+          type="button"
+          mat-button
+          class="forget p-0"
+          [routerLink]="['/login']"
+          routerLinkActive="router-link-active"
+        >
+          login
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <app-list></app-list> -->

@@ -1,0 +1,38 @@
+.sidenav-container {
+  height: 100%;
+}
+.fr {
+  /* float: right; */
+  margin-left: auto;
+}
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* -------------------- */
+
+.search {
+  position: sticky;
+  z-index: 100;
+}
+
+.search input {
+  height: 40px;
+  border: 2px solid #d6d4d4;
+}
+
+.search button {
+  position: absolute;
+  top: 1px;
+  right: 15px;
+}

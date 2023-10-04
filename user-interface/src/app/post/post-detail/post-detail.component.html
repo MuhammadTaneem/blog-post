@@ -1,0 +1,154 @@
+<!-- <h1>Post Details</h1> -->
+<div class="row d-flex justify-content-center">
+  <mat-card class="col-10 col-md-7">
+    <h4 class="author_name">
+      <a
+        class="text-decoration-none"
+        [routerLink]="['/profile', post.author]"
+        routerLinkActive="router-link-active"
+      >
+        {{ post.author_name }}
+      </a>
+    </h4>
+
+    <mat-card-header class="d-flex justify-content-between">
+      <mat-card-title>{{ post.category }}</mat-card-title>
+      <span *ngIf="uid == post.author">
+        <!-- edit post  -->
+        <span
+          class="text-primary"
+          class="text-decoration-none"
+          [routerLink]="['/postedit/' + post.id]"
+          routerLinkActive="router-link-active"
+        >
+          <mat-icon>edit</mat-icon>
+        </span>
+        <!-- delte post  -->
+        <span class="text-danger" (click)="onDelete(post.category)">
+          <mat-icon>delete</mat-icon>
+        </span>
+      </span>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p class="text-break">
+        {{ post.content }}
+      </p>
+
+      <!-- images -->
+      <img
+        *ngFor="let img of post.images"
+        mat-card-image
+        [src]="img.image"
+        [alt]="post.category"
+      />
+
+      <!-- <div *ngIf="uid == post.author">
+        <button
+          color="primary"
+          type="button"
+          mat-button
+          [routerLink]="['/postedit/' + post.id]"
+          routerLinkActive="router-link-active"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          color="warn"
+          type="button"
+          mat-button
+          (click)="onDelete(post.category)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div> -->
+
+      <!-- render comments  -->
+    </mat-card-content>
+  </mat-card>
+  <!-- comments -->
+  <!-- <label for="exampleFormControlTextarea1">write a comment...</label> -->
+  <form
+    class=""
+    [formGroup]="commentForm"
+    (ngSubmit)="onComment(post.id)"
+    class="col-10 col-md-7"
+  >
+    <mat-card class="d-flex justify-content-between">
+      <mat-form-field class="w-100">
+        <textarea
+          rows="3"
+          matInput
+          placeholder="Write a comment..."
+          formControlName="comment"
+        ></textarea>
+      </mat-form-field>
+      <div>
+        <button
+          type="submit"
+          class="m-2 border"
+          mat-stroked-button
+          color="primary"
+          [disabled]="!commentForm.valid"
+        >
+          comment
+        </button>
+      </div>
+    </mat-card>
+  </form>
+  <br />
+
+  <mat-card class="col-10 col-md-7" *ngFor="let comment of post.comments">
+    <div class="d-flex justify-content-between">
+      <h4 class="author_name">
+        <a
+          [routerLink]="['/profile', post.author]"
+          routerLinkActive="router-link-active"
+          class="text-decoration-none"
+          >a
+          {{ post.author_name }}
+        </a>
+      </h4>
+
+      <span *ngIf="uid == comment.author">
+        <!-- edit post  -->
+        <span class="text-primary" (click)="isEditComment = !isEditComment">
+          <mat-icon>edit</mat-icon>
+        </span>
+        <!-- delte post  -->
+        <span
+          class="text-danger"
+          (click)="onDeleteComment(comment.content, comment.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </span>
+      </span>
+    </div>
+
+    <!-- end  -->
+    <p class="text-break">
+      {{ comment.content }}
+    </p>
+
+    <div #editComment *ngIf="isEditComment" class="">
+      <hr />
+      <textarea
+        type="text"
+        #editCommentForm
+        matInput
+        rows="3"
+        class="form-control edc"
+        [value]="comment.content"
+      ></textarea>
+      <button
+        color="primary"
+        type="button"
+        class="m-2 border"
+        mat-stroked-button
+        (click)="onUpdateComment(editCommentForm.value, comment, post.id)"
+      >
+        comfirm
+      </button>
+    </div>
+  </mat-card>
+</div>

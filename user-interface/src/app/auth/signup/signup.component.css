@@ -1,0 +1,26 @@
+mat-form-field {
+  width: 100%;
+}
+
+.container {
+  margin-top: 3rem;
+}
+mat-spinner {
+  margin: auto;
+}
+
+.suc_logo {
+  color: rgb(25, 247, 25);
+  font-size: 500%;
+}
+.resend {
+  float: right;
+  color: #ff0000d9;
+}
+.forget {
+  float: right;
+  color: crimson;
+}
+.login {
+  color: green;
+}

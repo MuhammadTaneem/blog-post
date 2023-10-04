@@ -1,0 +1,59 @@
+<mat-progress-bar
+  *ngIf="loading"
+  mode="indeterminate"
+  color="accent"
+></mat-progress-bar>
+
+<div class="mt-5 row d-flex justify-content-center">
+  <mat-card class="col-11 col-sm-7 col-md-5">
+    <mat-card-header class="row text-center m-2">
+      <mat-card-title> Set new password</mat-card-title>
+    </mat-card-header>
+
+    <form [formGroup]="passForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="matCard">
+        <input
+          [type]="hide ? 'password' : 'text'"
+          matInput
+          formControlName="new_password"
+          name="password1"
+          placeholder="Enter new  password "
+        />
+        <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <br />
+      <mat-form-field class="matCard">
+        <input
+          [type]="hide ? 'password' : 'text'"
+          matInput
+          class="fromControl"
+          formControlName="re_new_password"
+          name="password2"
+          placeholder="Renter new password "
+        />
+        <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <br />
+
+      <div class="mt-2">
+        <button
+          type="submit"
+          color="primary"
+          class=""
+          mat-stroked-button
+          (click)="onSubmit()"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>
+
+<!-- <app-list></app-list> -->

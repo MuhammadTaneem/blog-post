@@ -1,0 +1,109 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="false"
+  >
+    <mat-toolbar>
+      <span
+        [routerLink]="['/home']"
+        routerLinkActive="router-link-active"
+        (click)="drawer.toggle()"
+        >Blogest</span
+      >
+      <mat-icon
+        aria-hidden="false"
+        class="space fr"
+        aria-label="Example home icon"
+        (click)="drawer.close()"
+        >close</mat-icon
+      >
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item (click)="viewProfile()" (click)="drawer.close()">
+        <mat-icon>person</mat-icon>
+        view Profile
+      </a>
+      <a
+        mat-list-item
+        [routerLink]="['/home']"
+        routerLinkActive="router-link-active"
+        (click)="drawer.toggle()"
+      >
+        Home
+      </a>
+      <a
+        mat-list-item
+        [routerLink]="['/create']"
+        routerLinkActive="router-link-active"
+        (click)="drawer.toggle()"
+      >
+        write blog
+      </a>
+      <a mat-list-item (click)="logout()" (click)="drawer.toggle()"> logout </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <span [routerLink]="['/home']" routerLinkActive="router-link-active"
+        >Blogest</span
+      >
+
+      <div class="fr">
+        <button
+          (click)="isSearch = !isSearch"
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+        >
+          <mat-icon class="sri"> search</mat-icon>
+        </button>
+
+        <button
+          (click)="drawer.toggle()"
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+        >
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar>
+    <div *ngIf="isSearch" class="row d-flex justify-content-center">
+      <div class="mt-2 col-md-5 col-sm-8 col-10 search position-fixed">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="search..."
+          #search
+        />
+        <button
+          type="button"
+          mat-stroked-button
+          color="primary"
+          [routerLink]="[]"
+          [queryParams]="{ s: search.value }"
+        >
+          <mat-icon> search</mat-icon>
+        </button>
+      </div>
+    </div>
+    <!--
+    <div class="h-100 w-100 d-flex justify-content-center bg">
+      <mat-card class="h-25 d-flex align-self-center">
+        <mat-spinner class="m-auto d-flex row"></mat-spinner>
+      </mat-card>
+    </div> -->
+    <mat-progress-bar
+      *ngIf="loading"
+      mode="indeterminate"
+      color="accent"
+    ></mat-progress-bar>
+    <router-outlet></router-outlet>
+
+    <div class="p-4"></div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

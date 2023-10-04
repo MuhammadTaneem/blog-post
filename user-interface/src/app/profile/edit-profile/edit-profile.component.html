@@ -1,0 +1,157 @@
+<div class="d-flex justify-content-center">
+  <mat-card class="col-11 col-sm-8 mt-5">
+    <div class="col-12 d-flex justify-content-center">
+      <img
+        *ngIf="imagePreview"
+        [src]="imagePreview"
+        [alt]="user.first_name"
+        width="150px "
+        height="150px"
+      />
+      <img
+        *ngIf="!imagePreview"
+        [src]="user.image"
+        [alt]="user.first_name"
+        width="150px "
+        height="150px"
+      />
+    </div>
+    <div>
+      <button
+        type="button"
+        mat-stroked-button
+        (click)="filePicker.click()"
+        class="float-end"
+      >
+        <mat-icon>edit</mat-icon> picture
+      </button>
+      <input
+        type="file"
+        name="image"
+        #filePicker
+        (change)="pickImage($event)"
+      />
+    </div>
+    <br />
+
+    <mat-card-title class="d-flex justify-content-center mb-5">
+      {{ user.first_name }} {{ user.last_name }}</mat-card-title
+    >
+    <!-- <mat-card-subtitle>Start</mat-card-subtitle> -->
+    <mat-card-content>
+      <div class="fw-normal fs-6 text-break">
+        <div class="float-end" *ngIf="uid == user.id">
+          <span class="text-primary" (click)="edit('Bio', user.bio)">
+            <mat-icon>edit</mat-icon>
+          </span>
+        </div>
+        <p>
+          <mat-icon class=""> face </mat-icon>
+
+          Bio
+          {{ user.bio }}
+        </p>
+        <div class="float-end" *ngIf="uid == user.id">
+          <span
+            class="text-primary"
+            (click)="edit('First Name', user.first_name)"
+          >
+            <mat-icon>edit</mat-icon>
+          </span>
+        </div>
+        <p>
+          <mat-icon class=""> person </mat-icon>
+
+          First Name
+          {{ user.first_name }}
+        </p>
+        <div class="float-end" *ngIf="uid == user.id">
+          <span
+            class="text-primary"
+            (click)="edit('Last Name', user.last_name)"
+          >
+            <mat-icon>edit</mat-icon>
+          </span>
+        </div>
+        <p>
+          <mat-icon class=""> person </mat-icon>
+
+          Last Name
+          {{ user.last_name }}
+        </p>
+        <div class="float-end" *ngIf="uid == user.id">
+          <span class="text-primary" (click)="edit('Education', user.study)">
+            <mat-icon>edit</mat-icon>
+          </span>
+        </div>
+        <p>
+          <mat-icon class=""> school </mat-icon>
+
+          Studied at
+          {{ user.study }}
+        </p>
+        <div class="float-end" *ngIf="uid == user.id">
+          <span class="text-primary" (click)="edit('Work', user.work)">
+            <mat-icon>edit</mat-icon>
+          </span>
+        </div>
+        <p>
+          <mat-icon class=""> work </mat-icon>
+          work at {{ user.work }}
+        </p>
+        <div class="float-end" *ngIf="uid == user.id">
+          <span class="text-primary" (click)="edit('Research', user.research)">
+            <mat-icon>edit</mat-icon>
+          </span>
+        </div>
+        <p>
+          <mat-icon class=""> find_in_page </mat-icon>
+          Research in {{ user.research }}
+        </p>
+
+        <div class="float-end" *ngIf="uid == user.id">
+          <span class="text-primary" (click)="edit('Country', user.country)">
+            <mat-icon>edit</mat-icon>
+          </span>
+        </div>
+        <p>
+          <mat-icon class=""> location_on </mat-icon>
+          Country {{ user.country }}
+        </p>
+        <div class="float-end" *ngIf="uid == user.id">
+          <span class="text-primary" (click)="edit('City', user.city)">
+            <mat-icon>edit</mat-icon>
+          </span>
+        </div>
+        <p>
+          <mat-icon class=""> location_on </mat-icon>
+          City {{ user.city }}
+        </p>
+
+        <div class="float-end" *ngIf="uid == user.id">
+          <span
+            class="text-primary"
+            [routerLink]="['/pass-change']"
+            routerLinkActive="router-link-active"
+          >
+            <mat-icon>edit</mat-icon>
+          </span>
+        </div>
+        <p>
+          <mat-icon class=""> lock </mat-icon>
+          Change Password
+        </p>
+
+        <div class="float-end" *ngIf="uid == user.id">
+          <span class="text-primary" (click)="edit('Email', user.email)">
+            <mat-icon>edit</mat-icon>
+          </span>
+        </div>
+        <p>
+          <mat-icon class=""> email </mat-icon>
+          Email {{ user.email }}
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

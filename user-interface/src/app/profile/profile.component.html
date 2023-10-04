@@ -1,0 +1,92 @@
+<div class="row d-flex justify-content-center">
+  <mat-card class="example-card">
+    <mat-card-header class="mb-5 mt-5 row d-flex justify-content-center">
+      <!-- <div mat-card-avatar class="example-header-image">
+        <img mat-card-image [src]="user.image" [alt]="user.first_name" />
+      </div> -->
+
+      <div class="col-12 d-flex justify-content-center">
+        <img
+          [src]="user.image"
+          [alt]="user.first_name"
+          width="150px "
+          height="150px"
+        />
+      </div>
+
+      <div class="mt-5">
+        <mat-card-title
+          class="d-flex justify-content-center mb-0 text-capitalize"
+        >
+          <p>{{ user.first_name + " " + user.last_name }}</p>
+        </mat-card-title>
+
+        <mat-card-subtitle
+          *ngIf="user.bio"
+          class="d-flex justify-content-center mt-0"
+        >
+          <p>{{ user.bio }}</p>
+        </mat-card-subtitle>
+        <mat-card-subtitle
+          *ngIf="!user.bio && user.id == uid"
+          class="d-flex justify-content-center mt-0"
+          >Update your bio</mat-card-subtitle
+        >
+      </div>
+    </mat-card-header>
+    <hr />
+    <mat-card-content class="d-flex justify-content-center">
+      <div class="col-11 col-sm-8 fw-normal fs-6 text-break">
+        <div class="float-end" *ngIf="uid == user.id">
+          <span
+            class="text-primary"
+            [routerLink]="['/editprofile/' + user.id]"
+            routerLinkActive="router-link-active"
+          >
+            <mat-icon>edit</mat-icon>
+          </span>
+        </div>
+        <p>
+          <mat-icon class=""> school </mat-icon>
+
+          Studied at
+          {{ user.study }}
+        </p>
+        <p>
+          <mat-icon class=""> work </mat-icon>
+          work at {{ user.work }}
+        </p>
+        <p>
+          <mat-icon class=""> find_in_page </mat-icon>
+          Research in {{ user.research }}
+        </p>
+        <p>
+          <mat-icon class=""> email </mat-icon>
+          Email {{ user.email }}
+        </p>
+        <p>
+          <mat-icon class=""> location_on </mat-icon>
+          Lives in {{ user.city }} , {{ user.country }}
+        </p>
+        <p>
+          <mat-icon class=""> access_time_filled </mat-icon>
+          Joined on {{ user.date_joined | date: "MMMM YYYY" }}
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <hr />
+  <mat-card class="col-10 col-sm-6 col-md-4">
+    <mat-card-content class="d-flex justify-content-center">
+      <button
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/home']"
+        [queryParams]="{ user: user.id }"
+      >
+        {{ user.first_name | titlecase }}
+        {{ user.last_name | titlecase }}'s blogs
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>

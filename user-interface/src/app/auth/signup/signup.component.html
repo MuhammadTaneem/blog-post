@@ -1,0 +1,139 @@
+<mat-progress-bar
+  *ngIf="loading"
+  mode="indeterminate"
+  color="accent"
+></mat-progress-bar>
+
+<div class="row d-flex justify-content-center mt-5">
+  <mat-card class="col-sm-6 col-10 col-md-4" *ngIf="!created">
+    <mat-card-header class="row text-center m-2">
+      <mat-card-title> Signup Blogest</mat-card-title>
+    </mat-card-header>
+
+    <form [formGroup]="signupFrom" (ngSubmit)="onSubmit()">
+      <mat-form-field class="matCard">
+        <input
+          type="text"
+          matInput
+          formControlName="first_name"
+          name="first_name"
+          placeholder="Frist Name "
+        />
+      </mat-form-field>
+
+      <br />
+      <mat-form-field class="matCard">
+        <input
+          type="text"
+          matInput
+          formControlName="last_name"
+          name="last_name"
+          placeholder="Last Name "
+        />
+      </mat-form-field>
+
+      <br />
+      <mat-form-field class="matCard">
+        <input
+          type="email"
+          matInput
+          formControlName="email"
+          name="email"
+          placeholder="Your Email"
+        />
+      </mat-form-field>
+
+      <br />
+      <mat-form-field class="matCard">
+        <input
+          [type]="hide ? 'password' : 'text'"
+          matInput
+          formControlName="password"
+          name="password1"
+          placeholder="Enter  password "
+        />
+        <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <br />
+      <mat-form-field class="matCard">
+        <input
+          [type]="hide ? 'password' : 'text'"
+          matInput
+          formControlName="re_password"
+          name="password2"
+          placeholder="Renter same  password "
+        />
+        <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <br />
+      <div class="text-center mt-2">
+        <button
+          type="submit"
+          color="primary"
+          mat-raised-button
+          [disabled]="!signupFrom.valid"
+          (clik)="onSubmit()"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </mat-card>
+
+  <!-- Successfully Signup -->
+
+  <div class="justify-content-center row" *ngIf="created">
+    <mat-card class="col-sm-10 col-xs-12 col-md-8 col-lg-6 pb-0">
+      <mat-card-header class="row text-center m-2">
+        <div>
+          <mat-icon
+            class="suc_logo"
+            aria-hidden="false"
+            aria-label="Example home icon"
+            >task_alt</mat-icon
+          >
+        </div>
+        <div>
+          <p class="h5">Successfully signup verify your email</p>
+        </div>
+      </mat-card-header>
+      <button class="resend" mat-button (click)="resend()">
+        resend email?
+      </button>
+    </mat-card>
+  </div>
+
+  <!-- action  -->
+  <div class="col-12 row d-flex justify-content-center">
+    <div class="col-sm-6 col-10 col-md-4">
+      <div class="action">
+        <button
+          type="button"
+          mat-button
+          class="login"
+          [routerLink]="['/login']"
+          routerLinkActive="router-link-active"
+        >
+          login
+        </button>
+        <button
+          type="button"
+          mat-button
+          class="forget"
+          [routerLink]="['/reset']"
+          routerLinkActive="router-link-active"
+        >
+          forget password
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <app-list></app-list> -->
